@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Guess Number</title>
+
+</head>
+
+<body>
+
+	<h1>Guess the Number Between 0 to 100</h1>
+
+	<form id="myform">
+
+		<input type="number" id="guess_num_input" class="guess_num_input">
+	</form>
+
+	<button id="guess_input_button">Submitt</button>
+	<br>
+	<br>
+	<div id="input_form_validation_message" style="color: red;"></div>
+
+	<script>
+		let rand_num = Math.floor(Math.random() * 100);
+		let chances = 0;
+
+		document.getElementById("guess_input_button").addEventListener("click", function () {
+			let user_input = document.getElementById("guess_num_input").value;
+			let user_validation = document.getElementById("input_form_validation_message");
+
+			if (user_input == '') {
+				user_validation.innerHTML = "please enter value";
+				chances++;
+			}
+			else if (user_input > 100) {
+				user_validation.innerHTML = "please enter value between 0 to 100";
+				document.getElementById("myform").reset();
+				chances++;
+			}
+			else if (user_input > rand_num && !(user_input > 100)) {
+				user_validation.innerHTML = "Noway : Your guess is heigher than the actual value";
+				document.getElementById("myform").reset();
+				chances++;
+			}
+			else if (user_input < rand_num && !(user_input < 0)) {
+				user_validation.innerHTML = "Noway : Your guess is shorter than the actual value";
+				document.getElementById("myform").reset();
+				chances++;
+			}
+			else if (user_input == rand_num) {
+				user_validation.innerHTML = "Welldone: your guess is right </br> YOur Score is " + chances;
+				// document.getElementById("myform").reset();
+
+			}
+
+			console.log("rando number is", rand_num);
+			console.log(user_input);
+		});
+
+	</script>
+</body>
+
+</html>
